@@ -20,6 +20,9 @@ on:
     # Remove the line above to run when pushing to master
   pull_request:
     branches: [master, main]
+    
+    
+concurrency: linting
 
 ###############
 # Set the Job #
