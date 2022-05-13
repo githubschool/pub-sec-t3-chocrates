@@ -58,3 +58,20 @@ jobs:
             BUILD_REVISION=${{ github.sha }}
             BUILD_VERSION=${{ github.sha }}
           push: false
+      - run: echo "Hello world!" > world.txt   
+      # Upload an artifact to GitHub
+      - name: Upload Artifact to Github Build Job
+        uses: actions/upload-artifact@v2
+        with:
+          name: world
+          path: world.txt
+  hello:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:  
+      # Download an artifact from GitHub
+      - name: Download Artifact from Github Build Job
+        uses: actions/download-artifact@v2
+        with:
+          name: world
+      - run: cat world.txt
