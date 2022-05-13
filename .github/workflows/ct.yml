@@ -41,6 +41,11 @@ jobs:
       ##########################
       # Checkout the code base #
       ##########################
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+        
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
